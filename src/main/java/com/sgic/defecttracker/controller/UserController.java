@@ -5,7 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sgic.defecttracker.repository.ProjectRepository;
 import com.sgic.defecttracker.repository.UserRepository;
+import com.sgic.defecttracker.service.UserService;
 import com.sgic.defecttracker.exception.ResourceNotFoundException;
 import com.sgic.defecttracker.model.User;
 
@@ -23,37 +26,25 @@ import com.sgic.defecttracker.model.User;
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	UserService userService;
 	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/user")
-	public List<User> getAllUsers(){
-		return userRepository.findAll();
+	public  List<User> findallUser(User user) {
+	
+		 List<User> users = (List<User>) userService.findAll();
+		 return users;
+	        	
 	}
 	
-	@PostMapping
-	public User createUser(@Valid @RequestBody User user) {
-		return userRepository.save(user);
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/user")
+	public HttpStatus createUser(@Valid @RequestBody User user) {
+		userService.saveUser(user);
+		return HttpStatus.CREATED;
 	}
 	
-	@PutMapping("/user/{userId}")
-	public User updateUser(@PathVariable Long userId,
-			@Valid @RequestBody User userRequest) {
-		return userRepository.findById(userId)
-				.map(user ->{
-					user.setName(userRequest.getName());
-					user.setType(userRequest.getType());
-					return userRepository.save(user);
-				}).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
-	}
 	
-	@DeleteMapping("/user/{userId}")
-	public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
-		return userRepository.findById(userId)
-				.map(user ->{
-					userRepository.delete(user);
-					  return ResponseEntity.ok().build();
-				}).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
-	}
 	
 
 }

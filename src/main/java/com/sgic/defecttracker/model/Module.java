@@ -31,6 +31,13 @@ public class Module {
 	    @JsonIgnore
 	    private Project project;
 
+	    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	    @JoinColumn(name = "user_id", nullable = false)
+	    @OnDelete(action = OnDeleteAction.CASCADE)
+	    @JsonIgnore
+	    private User user;
+	    
+
 		public Long getId() {
 			return id;
 		}
@@ -53,6 +60,14 @@ public class Module {
 
 		public void setProject(Project project) {
 			this.project = project;
+		}
+
+		public User getUser() {
+			return user;
+		}
+
+		public void setUser(User user) {
+			this.user = user;
 		}
 	    
 	    
