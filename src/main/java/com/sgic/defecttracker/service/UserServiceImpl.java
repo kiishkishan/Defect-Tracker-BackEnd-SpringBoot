@@ -9,7 +9,7 @@ import com.sgic.defecttracker.model.User;
 import com.sgic.defecttracker.repository.UserRepository;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	UserRepository userRepository;
@@ -19,9 +19,7 @@ public class UserServiceImpl {
 	}
 	
 	public List<User> findAll() {
-
 		List<User> users = (List<User>) userRepository.findAll();
-
 		return users;
 	}
 

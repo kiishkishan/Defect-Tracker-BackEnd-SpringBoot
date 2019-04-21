@@ -6,59 +6,49 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgic.defecttracker.exception.ResourceNotFoundException;
 import com.sgic.defecttracker.model.Project;
-import com.sgic.defecttracker.repository.ProjectRepository;
+import com.sgic.defecttracker.service.ProjectService;
+
 
 @RestController
+@RequestMapping("/project")
 public class ProjectController {
 
-	@Autowired
-	private ProjectRepository projectRepository;
+@Autowired
+ProjectService projectService;
 	
-	@GetMapping("/project")
-	  public List<Project> getAllProjects(){
-    	return projectRepository.findAll();
-    }
-	
-	@PostMapping
-	public Project createProject(@Valid @RequestBody Project project) {
-		return projectRepository.save(project);
+   
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/save")
+	public HttpStatus createProject(@Valid @RequestBody Project project) {
+		projectService.saveProject(project);
+		return HttpStatus.CREATED;
 	}
 	
-	
-	@PutMapping("/project/{projectId}")
-	public Project updateProject(@PathVariable Long projectId,
-			@Valid @RequestBody Project projectRequest) {
-		return projectRepository.findById(projectId)
-				.map(project -> {
-				  project.setName(projectRequest.getName());
-				  return projectRepository.save(project);
-                }).orElseThrow(() -> new ResourceNotFoundException("Project not found with id " + projectId));
-					
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/getall")
+	public List<Project> findProject(Project project){
+		List<Project> moduless = (List<Project>) projectService.findAll();
+		 return moduless;
 	}
 	
-	@DeleteMapping("/project/{projectId}")
-	public ResponseEntity<?> deleteProject(@PathVariable Long projectId){
-		return projectRepository.findById(projectId)
-				.map(project -> {
-					projectRepository.delete(project);
-				    return ResponseEntity.ok().build();
-                }).orElseThrow(() -> new ResourceNotFoundException("Project not found with id " + projectId));
-					
-				}
-						
-	}
+}
+
+	
+
 	
 	
 

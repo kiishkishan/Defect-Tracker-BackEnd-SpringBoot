@@ -24,7 +24,7 @@ public class User {
 	@NotBlank
 	private String email;
 	@NotBlank
-	private String passWord;
+	private String password;
 	@NotBlank
 	private String type;
 	
@@ -47,11 +47,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String passWord) {
+		this.password = passWord;
 	}
 	public String getType() {
 		return type;

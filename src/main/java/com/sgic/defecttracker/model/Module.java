@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "module")
 public class Module {
 	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 	    
 	    @Column(columnDefinition = "text")
