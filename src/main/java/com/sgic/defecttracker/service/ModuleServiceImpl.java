@@ -26,5 +26,18 @@ public class ModuleServiceImpl implements ModuleService {
 		return module;
 	}
 
+	@Override
+	public Module getModuleById(Long id) {
+	
+		return moduleRepository.findModuleById(id);
+	}
+
+	@Override
+	public Module getModuleByUserId(Long id) {
+		// TODO Auto-generated method stub
+		return moduleRepository.findModuleByUserId(id);
+	}
+
+
 	
 }

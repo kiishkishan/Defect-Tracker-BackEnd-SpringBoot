@@ -15,5 +15,7 @@ import com.sgic.defecttracker.model.Module;
 @Repository
 public interface ModuleRepository extends JpaRepository <Module, Long>{
 
-
+      Module findModuleById(Long id);
+	
+	Module findModuleByUserId(Long id);
 }

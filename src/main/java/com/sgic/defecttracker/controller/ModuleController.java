@@ -42,6 +42,21 @@ public class ModuleController {
 		 return modules;
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("getmodule/{id}")
+	public Module getMainById(@PathVariable("id") Long id) {
+		Module issueById=moduleService.getModuleById(id);
+		return issueById;	
+	}
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("getusermodule/{id}")
+	public Module getModuleByUserId(@PathVariable("id") Long id) {
+		Module issueById=moduleService.getModuleByUserId(id);
+		return issueById;	
+	}
+	
+	
 	
 
 	
