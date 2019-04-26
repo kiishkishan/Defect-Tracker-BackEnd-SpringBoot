@@ -29,6 +29,7 @@ public class User {
 	private String type;
 	
 	
+	
 	public Long getId() {
 		return id;
 	}
@@ -59,8 +60,4 @@ public class User {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	
-    
-    
 }

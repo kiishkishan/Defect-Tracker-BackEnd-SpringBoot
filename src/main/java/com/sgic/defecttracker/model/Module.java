@@ -1,5 +1,8 @@
 package com.sgic.defecttracker.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -27,15 +31,12 @@ public class Module {
 	    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	    @JoinColumn(name = "project_id", nullable = false)
 	    @OnDelete(action = OnDeleteAction.CASCADE)
-	    @JsonIgnore
 	    private Project project;
 
 	    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	    @JoinColumn(name = "user_id", nullable = false)
+	    @JoinColumn(name = "developer_id", nullable = false)
 	    @OnDelete(action = OnDeleteAction.CASCADE)
-	    @JsonIgnore
-	    private User user;
-	    
+	    private Developer developer;
 
 		public Long getId() {
 			return id;
@@ -61,13 +62,19 @@ public class Module {
 			this.project = project;
 		}
 
-		public User getUser() {
-			return user;
+		public Developer getDeveloper() {
+			return developer;
 		}
 
-		public void setUser(User user) {
-			this.user = user;
+		public void setDeveloper(Developer developer) {
+			this.developer = developer;
 		}
+
+	    
+	    
+	
+
+    
 	    
 	    
 	    
