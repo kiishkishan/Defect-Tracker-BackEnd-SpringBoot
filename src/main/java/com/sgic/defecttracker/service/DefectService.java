@@ -15,5 +15,6 @@ public interface DefectService {
 	
 	Defect getDefectById(Long id);
 	public void deleteDefectById(Long id);
+	void updateDefect(Defect defect);
 
 }

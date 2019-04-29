@@ -36,6 +36,12 @@ public class DefectServiceImpl implements DefectService{
 		defectRepository.delete(defect);
 		
 	}
+
+	@Override
+	public void updateDefect(Defect defect) {
+		defectRepository.save(defect);
+		
+	}
 	
 
 }
