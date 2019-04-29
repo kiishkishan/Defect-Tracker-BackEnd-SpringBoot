@@ -14,36 +14,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "module")
 public class Module {
 	    @Id
-	    private Long id;
+	    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	    private Long moduleId;
 	    
 	    @Column(columnDefinition = "text")
 	    private String name;
 	    
-	    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	    @JoinColumn(name = "project_id", nullable = false)
-	    @OnDelete(action = OnDeleteAction.CASCADE)
-	    private Project project;
+	    @ManyToOne
+		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+		@JoinColumn(name="id", nullable=false)
+		private Project project;
 
-	    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	    @JoinColumn(name = "developer_id", nullable = false)
-	    @OnDelete(action = OnDeleteAction.CASCADE)
-	    private Developer developer;
+	    @OneToMany(mappedBy="module",cascade = {CascadeType.ALL})
+	    private List<Developer> developer;
 
-		public Long getId() {
-			return id;
+		
+
+		public Long getModuleId() {
+			return moduleId;
 		}
 
-		public void setId(Long id) {
-			this.id = id;
+		public void setModuleId(Long moduleId) {
+			this.moduleId = moduleId;
 		}
 
 		public String getName() {
@@ -62,13 +60,14 @@ public class Module {
 			this.project = project;
 		}
 
-		public Developer getDeveloper() {
+		public List<Developer> getDeveloper() {
 			return developer;
 		}
 
-		public void setDeveloper(Developer developer) {
+		public void setDeveloper(List<Developer> developer) {
 			this.developer = developer;
 		}
+
 
 	    
 	    

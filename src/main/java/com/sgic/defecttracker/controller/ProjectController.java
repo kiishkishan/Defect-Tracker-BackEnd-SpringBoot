@@ -24,7 +24,6 @@ import com.sgic.defecttracker.service.ProjectService;
 
 
 @RestController
-@RequestMapping("/project")
 public class ProjectController {
 
 @Autowired

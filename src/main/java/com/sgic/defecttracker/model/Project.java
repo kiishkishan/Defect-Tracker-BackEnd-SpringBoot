@@ -47,9 +47,5 @@ public class Project {
 	public void setModule(List<Module> module) {
 		this.module = module;
 	}
-	
-	
-   
-	    
 	    
 }

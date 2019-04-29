@@ -2,18 +2,10 @@ package com.sgic.defecttracker.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "defects")
@@ -22,12 +14,7 @@ public class Defect {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "module_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private Module module;
+	private String module;
     
 	@Column(columnDefinition = "text")
 	private String description;
@@ -36,12 +23,7 @@ public class Defect {
 	private String severity;
 	private String priority;
 	private String defectType;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "assign_to", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private User user;
+	private String user;
 	private String status;
 	
 	
@@ -50,12 +32,6 @@ public class Defect {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Module getModule() {
-		return module;
-	}
-	public void setModule(Module module) {
-		this.module = module;
 	}
 	public String getDescription() {
 		return description;
@@ -87,10 +63,16 @@ public class Defect {
 	public void setDefectType(String defectType) {
 		this.defectType = defectType;
 	}
-	public User getUser() {
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 	public String getStatus() {

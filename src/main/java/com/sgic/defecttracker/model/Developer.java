@@ -1,38 +1,38 @@
 package com.sgic.defecttracker.model;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+
 @Entity
 @Table(name = "developer")
-
 public class Developer {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private long developerId;
 	private String name;
 
-	 @OneToMany(mappedBy="developer",cascade = {CascadeType.ALL})
-	 private List<Module> module;
+	 @ManyToOne
+		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+		@JoinColumn(name="moduleId", nullable=false)
+		private Module module;
 
-	public long getId() {
-		return id;
+	public long getDeveloperId() {
+		return developerId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setDeveloperId(long developerId) {
+		this.developerId = developerId;
 	}
 
 	public String getName() {
@@ -43,14 +43,15 @@ public class Developer {
 		this.name = name;
 	}
 
-	public List<Module> getModule() {
+	public Module getModule() {
 		return module;
 	}
 
-	public void setModule(List<Module> module) {
+	public void setModule(Module module) {
 		this.module = module;
 	}
-     
+
+
 	 
 	
 	
