@@ -19,34 +19,33 @@ import com.sgic.defecttracker.model.Defect;
 import com.sgic.defecttracker.service.DefectService;
 
 @RestController
-@RequestMapping("/defect/")
 public class DefectController {
 	@Autowired
 	DefectService defectService;
 
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PostMapping("save")
+	@PostMapping("saveDefect")
 	public HttpStatus createDefect(@Valid @RequestBody Defect defect) {
 		defectService.saveDefect(defect);
 		return HttpStatus.CREATED;
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("getall")
+	@GetMapping("getAllDefect")
 	public List<Defect> findDefect(Defect defect) {
 		List<Defect> defects = (List<Defect>) defectService.findAll();
 		return defects;
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("getbyid/{id}")
+	@GetMapping("getDefectById/{id}")
 	public Defect getDefectById(@PathVariable("id") Long id) {
 		Defect getDefect = defectService.getDefectById(id);
 		return getDefect;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("deleteDefect/{id}")
 	public void deleteDefectById(@PathVariable("id") Long id) {
 		defectService.deleteDefectById(id);
 		

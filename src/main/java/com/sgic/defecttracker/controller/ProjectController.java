@@ -31,14 +31,14 @@ ProjectService projectService;
 	
    
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PostMapping("/save")
+	@PostMapping("/saveProject")
 	public HttpStatus createProject(@Valid @RequestBody Project project) {
 		projectService.saveProject(project);
 		return HttpStatus.CREATED;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/getall")
+	@GetMapping("/getallProject")
 	public List<Project> findProject(Project project){
 		List<Project> moduless = (List<Project>) projectService.findAll();
 		 return moduless;

@@ -28,7 +28,7 @@ public class DeveloperController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/finddeveloper")
+	@GetMapping("/findDeveloper")
 	public  List<Developer> findallmain(Developer developer) {
 	
 		 List<Developer> books = (List<Developer>) developerService.findAll();

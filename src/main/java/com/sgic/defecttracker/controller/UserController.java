@@ -29,7 +29,7 @@ public class UserController {
 	UserService userService;
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/getall")
+	@GetMapping("/getallUSer")
 	public  List<User> findallUser(User user) {
 	
 		 List<User> users = (List<User>) userService.findAll();
@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PostMapping("/save")
+	@PostMapping("/saveUser")
 	public HttpStatus createUser(@Valid @RequestBody User user) {
 		userService.saveUser(user);
 		return HttpStatus.CREATED;
