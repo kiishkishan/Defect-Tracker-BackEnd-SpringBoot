@@ -19,6 +19,8 @@ public class Project {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	
 	private String name;
 	
 	@OneToMany(mappedBy="project",cascade = {CascadeType.ALL})

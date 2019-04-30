@@ -20,10 +20,17 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	public List<Project> findAll() {
-
         List<Project> project = (List<Project>) projectRepository.findAll();
-        
         return project;
     }
+
+	@Override
+	public Project findProjectById(Long id) {
+		return projectRepository.findProjectById(id);
+		
+	}
+
+
+
 
 }

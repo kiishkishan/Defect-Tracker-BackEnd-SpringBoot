@@ -24,6 +24,7 @@ import com.sgic.defecttracker.service.ProjectService;
 
 
 @RestController
+@RequestMapping("/project")
 public class ProjectController {
 
 @Autowired
@@ -31,14 +32,14 @@ ProjectService projectService;
 	
    
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PostMapping("/saveProject")
+	@PostMapping("/save")
 	public HttpStatus createProject(@Valid @RequestBody Project project) {
 		projectService.saveProject(project);
 		return HttpStatus.CREATED;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/getallProject")
+	@GetMapping("/getall")
 	public List<Project> findProject(Project project){
 		List<Project> moduless = (List<Project>) projectService.findAll();
 		 return moduless;

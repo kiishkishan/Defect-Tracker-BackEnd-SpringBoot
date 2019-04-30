@@ -14,6 +14,7 @@ public class Defect {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String module;
     
 	@Column(columnDefinition = "text")

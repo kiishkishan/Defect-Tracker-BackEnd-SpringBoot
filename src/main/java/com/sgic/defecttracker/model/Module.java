@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -23,16 +25,17 @@ public class Module {
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    private Long moduleId;
 	    
-	    @Column(columnDefinition = "text")
 	    private String name;
 	    
 	    @ManyToOne
 		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-		@JoinColumn(name="id", nullable=false)
+		@JoinColumn(name="project_id", nullable=false)
 		private Project project;
 
-	    @OneToMany(mappedBy="module",cascade = {CascadeType.ALL})
-	    private List<Developer> developer;
+	    @OneToOne
+		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+		@JoinColumn(name="user_id", nullable=false)
+	    private User user;
 
 		
 
@@ -60,14 +63,17 @@ public class Module {
 			this.project = project;
 		}
 
-		public List<Developer> getDeveloper() {
-			return developer;
+		public User getUser() {
+			return user;
 		}
 
-		public void setDeveloper(List<Developer> developer) {
-			this.developer = developer;
+		public void setUser(User user) {
+			this.user = user;
 		}
 
+		
+
+	
 
 	    
 	    

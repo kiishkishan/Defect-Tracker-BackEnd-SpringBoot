@@ -11,5 +11,6 @@ import com.sgic.defecttracker.model.Project;
 public interface ProjectService {
 	void saveProject(Project project);
 	public List<Project> findAll();
-
+	
+	Project findProjectById(Long id);
 }
