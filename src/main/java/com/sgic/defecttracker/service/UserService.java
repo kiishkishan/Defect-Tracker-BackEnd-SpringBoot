@@ -11,6 +11,10 @@ public interface UserService {
 	
 	void saveUser(User user );
 	public List<User> findAll();
-	User findUserById(Long id);
+//	User findUserById(Long id);
+	
+	User getUserById(Long id);
+	public void deleteUserById(Long id);
+	void updateUser(User user);
 
 }

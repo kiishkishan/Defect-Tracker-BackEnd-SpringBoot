@@ -22,26 +22,46 @@ public class ModuleServiceImpl implements ModuleService {
 		
 	}
 	
-//
+
 	@Override
 	public List<Module> findAll() {
 		 List<Module> module = (List<Module>) moduleRepository.findAll();
 		return module;
 	}
-//
+
 //	@Override
 //	public Module getModuleById(Long id) {
-//	
 //		return moduleRepository.findModuleById(id);
 //	}
 //
-//	@Override
-//	public Module getModuleByUserId(Long id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 //
+//	@Override
+//	public void deleteModuleById(Long id) {
+//		Module module = moduleRepository.findModuleById(id);
+//		moduleRepository.delete(module);
+//		
+//	}
 
+
+	@Override
+	public void updateModule(Module module) {
+		moduleRepository.save(module);
+		
+	}
+
+
+	@Override
+	public Module getModuleById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void deleteModuleById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }

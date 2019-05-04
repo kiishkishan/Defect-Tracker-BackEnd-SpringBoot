@@ -28,12 +28,10 @@ public class Module {
 	    private String name;
 	    
 	    @ManyToOne
-		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-		@JoinColumn(name="project_id", nullable=false)
+	    @JoinColumn(name="project_id", nullable=false)
 		private Project project;
 
 	    @OneToOne
-		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 		@JoinColumn(name="user_id", nullable=false)
 	    private User user;
 
