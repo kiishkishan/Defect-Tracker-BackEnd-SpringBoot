@@ -34,7 +34,7 @@ public class Defect implements Serializable {
 	private String stepstorecreate;
 	private String severity;
 	private String priority;
-	private String defecttype;
+	private String defectType;
 	private String status;
 	private String comments;
 	private String availablein;
@@ -111,10 +111,10 @@ public class Defect implements Serializable {
 		this.priority = priority;
 	}
 	public String getDefectType() {
-		return defecttype;
+		return defectType;
 	}
 	public void setDefectType(String defectType) {
-		this.defecttype = defectType;
+		this.defectType = defectType;
 	}
 	public String getModule() {
 		return module;

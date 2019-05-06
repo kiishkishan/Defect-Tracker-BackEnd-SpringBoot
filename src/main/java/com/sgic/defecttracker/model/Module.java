@@ -21,28 +21,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "module")
 public class Module {
-	    @Id
+	
+	 	@Id
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	    private Long moduleId;
+	    private Long id;
 	    
 	    private String name;
 	    
 	    @ManyToOne
-	    @JoinColumn(name="project_id", nullable=false)
+		@JoinColumn(name="project_id", nullable=false)
 		private Project project;
 
-	    @OneToOne
+	    @ManyToOne
 		@JoinColumn(name="user_id", nullable=false)
 	    private User user;
 
 		
 
-		public Long getModuleId() {
-			return moduleId;
+	
+		public Long getId() {
+			return id;
 		}
 
-		public void setModuleId(Long moduleId) {
-			this.moduleId = moduleId;
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public String getName() {
@@ -68,18 +70,6 @@ public class Module {
 		public void setUser(User user) {
 			this.user = user;
 		}
-
-		
-
-	
-
-	    
-	    
-	
-
-    
-	    
-	    
 	    
 	    
 	

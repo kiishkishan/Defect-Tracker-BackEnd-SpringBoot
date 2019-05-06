@@ -28,9 +28,8 @@ public class User {
 	
 	private String name;
 	
-	@OneToOne(mappedBy="user",cascade = {CascadeType.ALL})
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private Module module;
+	@OneToMany(mappedBy="user",cascade = {CascadeType.ALL})
+	private List<Module> module;
 	
 	@Email
 	@NotBlank

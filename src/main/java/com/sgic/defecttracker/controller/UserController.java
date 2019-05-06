@@ -44,6 +44,28 @@ public class UserController {
 		return HttpStatus.CREATED;
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("getUserById/{id}")
+	public User getUserById(@PathVariable("id") Long id) {
+		User getUser = userService.getUserById(id);
+		return getUser;
+	}
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/update/{id}")
+	public ResponseEntity<User> updateUser(@Valid @RequestBody User user){
+		userService.updateUser(user);
+		return new ResponseEntity<User>(user, HttpStatus.NO_CONTENT);
+		
+	}
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@DeleteMapping("delete/{id}")
+	public void deleteUserById(@PathVariable("id") Long id) {
+		userService.deleteUserById(id);
+		
+	}
+	
 	
 	
 

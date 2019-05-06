@@ -62,34 +62,41 @@ public class ModuleController {
 		return HttpStatus.CREATED;
 	}
 
-
+//	@PostMapping("/save")
+//	public HttpStatus createModule(@Valid @RequestBody Module module) {
+//		moduleService.saveModule(module);
+//		return HttpStatus.CREATED;
+//	}
 
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/getall")
-	public List<Module> findProject(Module module){
+	public List<Module> findProject(Moduledto moduledto){
+		
+		
 		List<Module> modules = (List<Module>) moduleService.findAll();
 		 return modules;
 	}
 	
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("getModuleId/{id}")
 	public Module getModuleById(@PathVariable("id") Long id) {
 		Module getModule = moduleService.getModuleById(id);
 		return getModule;
 	}
 	
-	@PutMapping("/updateModule/{id}")
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<Module> updatemodule(@Valid @RequestBody Module module){
 		moduleService.updateModule(module);
 		return new ResponseEntity<Module>(module, HttpStatus.NO_CONTENT);
 		
 	}
-	@DeleteMapping("deleteModule/{id}")
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@DeleteMapping("delete/{id}")
 	public void deleteModuleById(@PathVariable("id") Long id) {
 		moduleService.deleteModuleById(id);
 		
 	}
-	
-
 	
 }

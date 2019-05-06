@@ -17,7 +17,6 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public void saveModule(Module module) {
-		// TODO Auto-generated method stub
 		moduleRepository.save(module);
 		
 	}
@@ -29,18 +28,18 @@ public class ModuleServiceImpl implements ModuleService {
 		return module;
 	}
 
-//	@Override
-//	public Module getModuleById(Long id) {
-//		return moduleRepository.findModuleById(id);
-//	}
-//
-//
-//	@Override
-//	public void deleteModuleById(Long id) {
-//		Module module = moduleRepository.findModuleById(id);
-//		moduleRepository.delete(module);
-//		
-//	}
+	@Override
+	public Module getModuleById(Long id) {
+		return moduleRepository.findModuleById(id);
+	}
+
+
+	@Override
+	public void deleteModuleById(Long id) {
+		Module module = moduleRepository.findModuleById(id);
+		moduleRepository.delete(module);
+		
+	}
 
 
 	@Override
@@ -50,18 +49,6 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 
-	@Override
-	public Module getModuleById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void deleteModuleById(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
